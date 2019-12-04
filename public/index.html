@@ -2,12 +2,17 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Socket.IO whiteboard</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+
+  <title>Socket.IO Collaborative Whiteboard</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <canvas class="whiteboard" ></canvas>
+
+
+  <canvas class="whiteboard" data-drawer="true"></canvas>
 
   <div class="colors">
     <div class="color black"></div>
@@ -16,6 +21,19 @@
     <div class="color blue"></div>
     <div class="color yellow"></div>
   </div>
+
+  <div class="user-info">
+    <p>You are: <span class="name"></span></p>
+    <p>The drawer is: <span class="drawer"></span></p>
+  </div>
+
+
+  <!-- <div class="toggle">
+      <button data-drawer="elect">Be Drawer</button>
+      <button data-drawer="busy">Someone Else is Drawing</button>
+      <button data-drawer="stop">Stop Drawing</button>
+    </button>
+  </div> -->
 
   <script src="/socket.io/socket.io.js"></script>
   <script src="/main.js"></script>

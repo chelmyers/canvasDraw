@@ -11,6 +11,8 @@ html, body {
   height: 100%;
   margin: 0;
   padding: 0;
+  overscroll-behavior: contain;
+  touch-action: none;
 }
 
 /**
@@ -25,7 +27,12 @@ html, body {
   right: 0;
   bottom: 0;
   top: 0;
+  pointer-events: none;
 }
+
+  .whiteboard[data-drawer="true"]{
+    pointer-events: auto;
+  }
 
 .colors {
   position: fixed;
@@ -42,3 +49,16 @@ html, body {
 .color.green { background-color: green; }
 .color.blue { background-color: blue; }
 .color.yellow { background-color: yellow; }
+
+
+
+/**
+ * USER
+ */
+.user-info {
+  position: absolute;
+  bottom: 0;
+  z-index:1;
+  font-size: 14px;
+  font-weight: bold;
+}

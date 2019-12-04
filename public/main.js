@@ -7,16 +7,49 @@
   var colors = document.getElementsByClassName('color');
   var context = canvas.getContext('2d');
 
+  let id;
+
   var current = {
     color: 'black'
   };
   var drawing = false;
 
+
+  //Collect and init user information
+  socket.on('connect', () => {
+    id = socket.id;
+
+    //Capture name
+    let name = prompt("What is your name?");
+    name = name ? name : "lazy";
+    document.querySelector('.name').innerHTML = name;
+    document.querySelector('.drawer').innerHTML = name;
+
+    //Emit new user + name
+    socket.emit('add user', name);
+  });
+
+
+  //Set newest users to the drawer
+  socket.on('new user', function(data){
+    let user = JSON.parse(data);
+
+    //If you are not last user connect, change data attribute to false
+    if (id != user.id) {
+      console.log(id + "-" + user.id)
+      document.querySelector('.drawer').innerHTML = user.n;
+      canvas.setAttribute('data-drawer', 'false');
+    }
+
+  });
+
+
+
   canvas.addEventListener('mousedown', onMouseDown, false);
   canvas.addEventListener('mouseup', onMouseUp, false);
   canvas.addEventListener('mouseout', onMouseUp, false);
   canvas.addEventListener('mousemove', throttle(onMouseMove, 10), false);
-  
+
   //Touch support for mobile devices
   canvas.addEventListener('touchstart', onMouseDown, false);
   canvas.addEventListener('touchend', onMouseUp, false);
