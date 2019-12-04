@@ -1,2 +1,41 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+
+# Coverage directory used by tools like istanbul
+coverage
+
+# Dependency directories and file management
 node_modules
+jspm_packages
 package-lock.json
+
+# npm cache directory, npm pack
+.npm
+*.tgz
+
+# Local and Project files
+*.swp
+*~*
+*.iws
+.idea/**/*.iml
+.idea/**/workspace.xml
+.idea/**/tasks.xml
+.idea/**/usage.statistics.xml
+.idea/**/dictionaries
+.idea/**/shelf
+*.env
+
+# TypeScript/Frontend
+/typings
+/public/js
+
+# OS files
+.DS_Store?
+Thumbs.db
+.Trashes
+
+# Certificates
+*.pem
+*.crt

@@ -7,13 +7,13 @@
     "socket.io",
     "whiteboard"
   ],
-  "dependencies": {
-    "express": "4.9.x",
-    "socket.io": "latest"
-  },
   "scripts": {
     "start": "node index"
   },
   "author": "Damien Arrachequesne + Chelsea M. Myers + Robert C. Gray",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.17.1",
+    "socket.io": "^2.3.0"
+  }
 }
