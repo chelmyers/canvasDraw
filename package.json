@@ -1,23 +1,19 @@
 {
-  "name": "canvasdraw",
+  "name": "whiteboard",
   "version": "1.0.0",
-  "private": true,
-  "description": "A multiplayer, deep learning drawing game",
-  "main": "app.js",
+  "description": "A simple collaborative whiteboard using socket.io",
+  "main": "index.js",
+  "keywords": [
+    "socket.io",
+    "whiteboard"
+  ],
   "scripts": {
-    "start": "node ./run.js",
-    "dev": "set DEBUG=canvasdraw:* && node ./run.js",
-    "debug": "node --inspect ./run.js"
+    "start": "node index"
   },
-  "author": "Chelsea M. Myers + Robert C. Gray",
-  "license": "UNLICENCED",
+  "author": "Damien Arrachequesne + Chelsea M. Myers + Robert C. Gray",
+  "license": "MIT",
   "dependencies": {
-    "body-parser": "^1.19.0",
-    "cookie-parser": "^1.4.4",
-    "dotenv": "^8.2.0",
     "express": "^4.17.1",
-    "http-status": "^1.4.1",
-    "morgan": "^1.9.1",
     "socket.io": "^2.3.0"
   }
 }
