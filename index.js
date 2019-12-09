@@ -5,15 +5,17 @@ const http = require('http').Server(app);
 const io = require('socket.io')(http);
 const port = process.env.PORT || 3000;
 
+//var to count numbers of users
 var numUsers = 0;
 
+//Point to directory with client-facing files
 app.use(express.static(__dirname + '/public'));
 
-
+//On connection, run function onConnection
 io.on('connection', onConnection);
 
+//Listening for emits from client
 http.listen(port, () => console.log('listening on port ' + port));
-
 
 
 function onConnection(socket){
@@ -24,32 +26,33 @@ function onConnection(socket){
   var addedUser = false;
 
   // when the client emits 'add user', this listens and executes
-  socket.on('add user', (name) => {
+  socket.on('add user', (username) => {
+    //end is users already added
     if (addedUser) return;
 
-    console.log(name);
+    console.log(username);
     // we store the name in the socket session for this client
-    socket.name = name;
+    socket.name = username;
     ++numUsers;
     addedUser = true;
 
-    user = {
-      n: name,
+    //emit to client new user joined. Send object with user data
+    socket.broadcast.emit('new user', {
+      name: socket.name,
       id: socket.id
-    }
-
-    socket.broadcast.emit('new user', JSON.stringify(user));
+    });
   });
 
 
   // when the user disconnects.. perform this
   socket.on('disconnect', () => {
+    //if user has been added
     if (addedUser) {
       --numUsers;
 
       // echo globally that this client has left
       socket.broadcast.emit('user left', {
-        username: socket.username,
+        username: socket.name,
         numUsers: numUsers
       });
     }
