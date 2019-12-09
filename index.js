@@ -1,9 +1,10 @@
 
 const express = require('express');
 const app = express();
-const http = require('http').Server(app);
-const io = require('socket.io')(http);
-const port = process.env.PORT || 3000;
+const cert = require('./cert');
+const https = require('https').Server(cert, app);
+const io = require('socket.io')(https);
+const port = process.env.PORT || 4000;
 
 //var to count numbers of users
 var numUsers = 0;
@@ -15,7 +16,7 @@ app.use(express.static(__dirname + '/public'));
 io.on('connection', onConnection);
 
 //Listening for emits from client
-http.listen(port, () => console.log('listening on port ' + port));
+https.listen(port, () => console.log('listening on port ' + port));
 
 
 function onConnection(socket){
